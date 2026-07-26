@@ -1,0 +1,62 @@
+services:
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        user: evo
+        uid: ${WWWUSER:-1000}
+    container_name: evo-app
+    restart: unless-stopped
+    working_dir: /var/www
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./:/var/www
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - evo
+
+  nginx:
+    image: nginx:alpine
+    container_name: evo-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+    networks:
+      - evo
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: evo-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_DATABASE:-laravel}
+      POSTGRES_USER: ${DB_USERNAME:-root}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-secret}
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME:-root} -d ${DB_DATABASE:-laravel}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - evo
+
+volumes:
+  postgres_data:
+
+networks:
+  evo:
+    driver: bridge
