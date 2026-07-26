@@ -1,6 +1,7 @@
 import { router } from '@inertiajs/vue3';
 import { toast } from 'vue-sonner';
 import type { FlashToast } from '@/types/ui';
+import { h } from "vue";
 
 export function initializeFlashToast(): void {
     router.on('flash', (event) => {
@@ -11,6 +12,10 @@ export function initializeFlashToast(): void {
             return;
         }
 
-        toast[data.type](data.message);
+        toast[data.type](
+            h('div', {
+                innerHTML: data.message
+            })
+        );
     });
 }
