@@ -18,7 +18,10 @@ const patternId = `pattern-${useId()}`;
                 height="8"
                 patternUnits="userSpaceOnUse"
             >
-                <path d="M-1 5L5 -1M3 9L8.5 3.5" stroke-width="0.5"></path>
+                <path
+                    d="M-1 5L5 -1M3 9L8.5 3.5"
+                    stroke-width="0.5"
+                />
             </pattern>
         </defs>
         <rect
@@ -26,6 +29,6 @@ const patternId = `pattern-${useId()}`;
             :fill="`url(#${patternId})`"
             width="100%"
             height="100%"
-        ></rect>
+        />
     </svg>
 </template>

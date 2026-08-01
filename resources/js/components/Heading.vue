@@ -32,7 +32,10 @@ withDefaults(defineProps<Props>(), {
                 "
             >
                 <span class="flex items-center gap-2">
-                    <Link v-if="href" :href="href">
+                    <Link
+                        v-if="href"
+                        :href="href"
+                    >
                         <Button
                             variant="outline"
                             size="sm"
@@ -45,7 +48,10 @@ withDefaults(defineProps<Props>(), {
                 </span>
             </h2>
 
-            <p v-if="description" class="text-sm text-muted-foreground">
+            <p
+                v-if="description"
+                class="text-sm text-muted-foreground"
+            >
                 {{ description }}
             </p>
         </div>

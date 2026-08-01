@@ -21,7 +21,7 @@ const paddingAroundControl = [
 ];
 
 export default defineConfigWithVueTs(
-    vue.configs['flat/essential'],
+    vue.configs['flat/recommended'],
     vueTsConfigs.recommended,
     {
         plugins: {
@@ -38,7 +38,18 @@ export default defineConfigWithVueTs(
         },
         rules: {
             'vue/multi-word-component-names': 'off',
+            'vue/require-default-prop': 'off',
             '@typescript-eslint/no-explicit-any': 'off',
+            'vue/html-indent': ['error', 4, {
+                attribute: 1,
+                baseIndent: 1,
+                closeBracket: 0,
+                alignAttributesVertically: true,
+            }],
+            'vue/script-indent': ['error', 4, {
+                baseIndent: 0,
+                switchCase: 1,
+            }],
             '@typescript-eslint/consistent-type-imports': [
                 'error',
                 {
@@ -68,6 +79,9 @@ export default defineConfigWithVueTs(
             '@stylistic': stylistic,
         },
         rules: {
+            '@stylistic/indent': ['error', 4, {
+                SwitchCase: 1,
+            }],
             curly: ['error', 'multi-line'],
             '@stylistic/brace-style': ['error', '1tbs', { allowSingleLine: false }],
             '@stylistic/padding-line-between-statements': [

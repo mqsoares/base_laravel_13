@@ -26,13 +26,20 @@ defineProps<Props>();
 <template>
     <DropdownMenuLabel class="p-0 font-normal">
         <div class="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-            <UserInfo :user="user" :show-email="true" />
+            <UserInfo
+                :user="user"
+                :show-email="true"
+            />
         </div>
     </DropdownMenuLabel>
     <DropdownMenuSeparator />
     <DropdownMenuGroup>
         <DropdownMenuItem :as-child="true">
-            <Link class="block w-full cursor-pointer" :href="edit()" prefetch>
+            <Link
+                class="block w-full cursor-pointer"
+                :href="edit()"
+                prefetch
+            >
                 <Settings class="mr-2 h-4 w-4" />
                 Minha conta
             </Link>
@@ -43,9 +50,9 @@ defineProps<Props>();
         <Link
             class="block w-full cursor-pointer"
             :href="logout()"
-            @click="handleLogout"
             as="button"
             data-test="logout-button"
+            @click="handleLogout"
         >
             <LogOut class="mr-2 h-4 w-4" />
             Sair

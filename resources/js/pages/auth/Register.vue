@@ -26,9 +26,9 @@ defineOptions({
     <Head title="Register" />
 
     <Form
+        v-slot="{ errors, processing }"
         v-bind="store.form()"
         :reset-on-success="['password', 'password_confirmation']"
-        v-slot="{ errors, processing }"
         class="flex flex-col gap-6"
     >
         <div class="grid gap-6">
@@ -107,8 +107,9 @@ defineOptions({
                 :href="login()"
                 class="underline underline-offset-4"
                 :tabindex="6"
-                >Log in</TextLink
             >
+                Log in
+            </TextLink>
         </div>
     </Form>
 </template>

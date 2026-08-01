@@ -36,7 +36,9 @@ defineOptions({
 <template>
     <Head title="Segurança" />
 
-    <h1 class="sr-only">Configurações de segurança</h1>
+    <h1 class="sr-only">
+        Configurações de segurança
+    </h1>
 
     <div class="space-y-6">
         <Heading
@@ -46,6 +48,7 @@ defineOptions({
         />
 
         <Form
+            v-slot="{ errors, processing }"
             v-bind="SecurityController.update.form()"
             :options="{
                 preserveScroll: true,
@@ -57,7 +60,6 @@ defineOptions({
                 'current_password',
             ]"
             class="space-y-6"
-            v-slot="{ errors, processing }"
         >
             <div class="grid gap-2">
                 <Label for="current_password">Senha atual</Label>

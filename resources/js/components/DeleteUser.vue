@@ -32,7 +32,9 @@ const passwordInput = useTemplateRef('passwordInput');
             class="space-y-4 rounded-lg border border-red-100 bg-red-50 p-4 dark:border-red-200/10 dark:bg-red-700/10"
         >
             <div class="relative space-y-0.5 text-red-600 dark:text-red-100">
-                <p class="font-medium">Atenção!</p>
+                <p class="font-medium">
+                    Atenção!
+                </p>
                 <p class="text-sm">
                     Proceda com cautela, esta ação é irreversível.
                 </p>
@@ -48,14 +50,14 @@ const passwordInput = useTemplateRef('passwordInput');
                 </DialogTrigger>
                 <DialogContent>
                     <Form
+                        v-slot="{ errors, processing, reset, clearErrors }"
                         v-bind="ProfileController.destroy.form()"
                         reset-on-success
-                        @error="() => passwordInput?.focus()"
                         :options="{
                             preserveScroll: true,
                         }"
                         class="space-y-6"
-                        v-slot="{ errors, processing, reset, clearErrors }"
+                        @error="() => passwordInput?.focus()"
                     >
                         <DialogHeader class="space-y-3">
                             <DialogTitle>
@@ -67,13 +69,16 @@ const passwordInput = useTemplateRef('passwordInput');
                         </DialogHeader>
 
                         <div class="grid gap-2">
-                            <Label for="password" class="sr-only">
+                            <Label
+                                for="password"
+                                class="sr-only"
+                            >
                                 Senha
                             </Label>
                             <PasswordInput
                                 id="password"
-                                name="password"
                                 ref="passwordInput"
+                                name="password"
                                 placeholder="Senha"
                             />
                             <InputError :message="errors.password" />

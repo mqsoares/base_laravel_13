@@ -19,7 +19,9 @@ defineOptions({
 <template>
     <Head title="Tema" />
 
-    <h1 class="sr-only">Configurações do tema</h1>
+    <h1 class="sr-only">
+        Configurações do tema
+    </h1>
 
     <div class="space-y-6">
         <Heading

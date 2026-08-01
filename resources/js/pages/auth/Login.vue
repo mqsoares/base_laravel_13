@@ -32,9 +32,9 @@ defineProps<{
     </div>
 
     <Form
+        v-slot="{ errors, processing }"
         v-bind="store.form()"
         :reset-on-success="['password']"
-        v-slot="{ errors, processing }"
         class="flex flex-col gap-6"
     >
         <div class="grid gap-6">
@@ -67,8 +67,15 @@ defineProps<{
             </div>
 
             <div class="flex items-center justify-between">
-                <Label for="remember" class="flex items-center space-x-3">
-                    <Checkbox id="remember" name="remember" :tabindex="3" />
+                <Label
+                    for="remember"
+                    class="flex items-center space-x-3"
+                >
+                    <Checkbox
+                        id="remember"
+                        name="remember"
+                        :tabindex="3"
+                    />
                     <span>Lembre de mim</span>
                 </Label>
             </div>

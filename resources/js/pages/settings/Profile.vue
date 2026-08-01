@@ -35,7 +35,9 @@ const user = computed(() => page.props.auth.user);
 <template>
     <Head title="Perfil" />
 
-    <h1 class="sr-only">Configurações de perfil</h1>
+    <h1 class="sr-only">
+        Configurações de perfil
+    </h1>
 
     <div class="flex flex-col space-y-6">
         <Heading
@@ -45,9 +47,9 @@ const user = computed(() => page.props.auth.user);
         />
 
         <Form
+            v-slot="{ errors, processing }"
             v-bind="ProfileController.update.form()"
             class="space-y-6"
-            v-slot="{ errors, processing }"
         >
             <div class="grid gap-2">
                 <Label for="name">Nome</Label>
@@ -60,7 +62,10 @@ const user = computed(() => page.props.auth.user);
                     autocomplete="name"
                     placeholder="Nome completo"
                 />
-                <InputError class="mt-2" :message="errors.name" />
+                <InputError
+                    class="mt-2"
+                    :message="errors.name"
+                />
             </div>
 
             <div class="grid gap-2">
@@ -75,7 +80,10 @@ const user = computed(() => page.props.auth.user);
                     autocomplete="username"
                     placeholder="email@exemplo.com"
                 />
-                <InputError class="mt-2" :message="errors.email" />
+                <InputError
+                    class="mt-2"
+                    :message="errors.email"
+                />
             </div>
 
             <div class="flex items-center gap-4">

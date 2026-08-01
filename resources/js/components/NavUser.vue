@@ -47,8 +47,8 @@ watch(() => page.url, () => {
                         isMobile
                             ? 'bottom'
                             : state === 'collapsed'
-                              ? 'left'
-                              : 'bottom'
+                                ? 'left'
+                                : 'bottom'
                     "
                     align="end"
                     :side-offset="4"
