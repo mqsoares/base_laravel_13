@@ -3,10 +3,12 @@
 namespace App\Providers;
 
 use Carbon\CarbonImmutable;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
+use Inertia\Inertia;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->configureDefaults();
+        $this->redirectWithToastMacro();
     }
 
     /**
@@ -46,5 +49,18 @@ class AppServiceProvider extends ServiceProvider
                 ->uncompromised()
             : null,
         );
+    }
+
+    /**
+     * Redirect with toast.
+     */
+    protected function redirectWithToastMacro()
+    {
+        RedirectResponse::macro('withToast', function (string $type, string $message) {
+            /** @var RedirectResponse $this */
+            Inertia::flash('toast', ['type' => $type, 'message' => $message]);
+
+            return $this;
+        });
     }
 }
