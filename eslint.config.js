@@ -1,6 +1,5 @@
 import stylistic from '@stylistic/eslint-plugin';
 import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript';
-import prettier from 'eslint-config-prettier/flat';
 import importPlugin from 'eslint-plugin-import';
 import vue from 'eslint-plugin-vue';
 
@@ -69,6 +68,7 @@ export default defineConfigWithVueTs(
             '@stylistic': stylistic,
         },
         rules: {
+            curly: ['error', 'multi-line'],
             '@stylistic/brace-style': ['error', '1tbs', { allowSingleLine: false }],
             '@stylistic/padding-line-between-statements': [
                 'error',
@@ -89,15 +89,5 @@ export default defineConfigWithVueTs(
             'resources/js/routes/**',
             'resources/js/wayfinder/**',
         ],
-    },
-    prettier,
-    {
-        plugins: {
-            '@stylistic': stylistic,
-        },
-        rules: {
-            curly: ['error', 'multi-line'],
-            '@stylistic/brace-style': ['error', '1tbs', { allowSingleLine: false }],
-        },
     },
 );
