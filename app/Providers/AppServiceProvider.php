@@ -54,7 +54,7 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Redirect with toast.
      */
-    protected function redirectWithToastMacro()
+    protected function redirectWithToastMacro(): void
     {
         RedirectResponse::macro('withToast', function (string $type, string $message) {
             /** @var RedirectResponse $this */
