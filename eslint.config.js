@@ -58,6 +58,10 @@ export default defineConfigWithVueTs(
                 'error',
                 'prefer-top-level',
             ],
+            'vue/no-mutating-props': [
+                'error',
+                { shallowOnly: true }
+            ]
         },
     },
     {
